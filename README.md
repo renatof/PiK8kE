@@ -20,7 +20,7 @@ To join the testbed, you'll need:
 
 # Creating a custom image
 
-* Create a folder PiK8kE on your Linux computer and clone this repository with git clone
+* Create a folder PiK8kE on your Linux computer and clone this repository with git clone https://github.com/renatof/PiK8kE.git
 * [Download the 64-bit Ubuntu 20.04.2 LTS image](https://ubuntu.com/download/raspberry-pi) to your Linux computer
 * Copy the config-XYZ.json EdgeVPN.io configuration files for your IP address allocation. Here, XYZ describes the last octet of the virtual IP address (with leading zeroes if necessary). The first three bytes are 10.10.100. For example, config-004.json is the configuration for node 10.10.100.4
 * Edit the cloud-init file user-data-PiK8kE to: 1) change the password for the ubuntu user from PiK8kE to a secure password, 2) add any ssh authorized keys you'd like to include to authenticate to the ubuntu user. Please don't delete the existing ssh authorized_key - that is required for remote installation and management of Kubernetes.
