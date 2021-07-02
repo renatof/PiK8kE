@@ -12,13 +12,17 @@ Currently, the testbed is restricted to members of [PRAGMA](http://www.pragma-gr
 
 To join the testbed, you'll need:
 
-* One or more Raspberry Pi devices, with at least 2GB memory, 4 cores, and 64GB SD card storage
+* One or more edge devices. Currently, we support Raspberry Pi 4 and nVidia Jetson Nano devices, with at least 2GB memory, 4 cores, and 64GB SD card storage
 * An Ethernet (wired or wireless) network to connect the Pis to. The recommended setup is to deploy on a private network, with DHCP assigned addresses
 * PiK8kE configuration files for [EdgeVPN.io](https://edgevpn.io) handed out by the PRAGMA PiK8kE team (Renato or Ken)
-* A Ubuntu 20.04 server Raspberry Pi base image
+* Ubuntu 20.04 server Raspberry Pi base image, or Ubuntu 18.04 Jetson Nano base image
 * A Linux computer with a micro SD card reader, and software to flash the SD card
 
-# Creating a custom image
+# Raspberry Pi 4 setup
+
+The Raspberry Pi setup is the simplest one: essentially, create custom images for each device following the instructions below, then plugging in to each Pi, and turning them on
+
+## Creating a custom Raspberry Pi 4 image
 
 * Create a folder PiK8kE on your Linux computer and clone this repository with git clone https://github.com/renatof/PiK8kE.git
 * [Download the 64-bit Ubuntu 20.04.2 LTS image](https://ubuntu.com/download/raspberry-pi) to your Linux computer
@@ -34,5 +38,34 @@ To join the testbed, you'll need:
 
 Then, you're ready to flash the SD card with PiK8kE-XYZ.img, plug it into your Pi, and boot it up. The cloud-init boot process will automatically install and configure the EdgeVPN.io virtual network. Please contact the PRAGMA PiK8kE team (Renato or Ken) to give a heads-up that your device is up and running.
 
+# nVidia Jetson Nano setup
 
+The Jetson nano setup is more involved, and requires more manual steps for each device added to the network - we currently do not have a similar mechanism to the Pi 4 where you would create/flash a custom SD card on a Linux machine.
+
+## Customizing a Jetson nano device
+
+* Flash an SD card for your device using the default nVidia Ubuntu 18.04 image that you can download from their developer's site
+* Boot up the Jetson Nano with the default nVidia SD card, and go through the interactive process of configuring your device with timezone, user name, etc. For consistency with the rest of the network, create a user account called ubuntu
+* Once the GUI interface is available, open a terminal and download the custom PiK8kE kernel tarball jetson-custom-kernel-PiK8kE.tgz into the root folder of your device. Please contact the PRAGMA team for a download link
+* Install the custom kernel and reboot:
+
+```
+sudo bash
+cd /
+(download jetson-custom-kernel-PiK8kE.tgz from link provided to you)
+tar -xf jetson-custom-kernel-PiK8kE.tgz
+reboot
+```
+
+* After rebooting, you're ready to install the rest of the software
+* Download the PiK8kE installation script: git clone https://github.com/renatof/PiK8kE
+* Download the Evio configuration file for your node, config-XYZ.json, that you obtained for your device(s) from the PRAGMA team
+* (Optional) edit the config-XYZ.json files and enter your site's geographical coordinates (lat/lon separated by comma) in the JSON "GeoCoordinate" key. This is not required but helps us keep track of where nodes are running on a map
+* Execute the installation script, passing XYZ (3-digit of the last octet of the Evio IP address) as an argument; make sure the config-XYZ.json is present:
+
+```
+./setup_jetson_nano_PiK8kE.sh XYZ
+```
+
+* Please contact the PRAGMA PiK8kE team (Renato or Ken) to give a heads-up that your device is up and running.
 
