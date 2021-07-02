@@ -60,6 +60,9 @@ sudo mount -t vfat -o loop,rw,offset=$(($LOOP_BOOT_START * $LOOP_BOOT_BLOCK)),si
 sudo cp $USER_DATA_FILE ./mnt_boot/user-data
 sudo cp $NETWORK_CONFIG_FILE ./mnt_boot/network-config
 
+# patch cmdline.txt
+sudo sed -i '$ s/$/ cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1 swapaccount=1/' ./mnt_boot/cmdline.txt
+
 # unmount boot partition
 sudo umount ./mnt_boot
 
