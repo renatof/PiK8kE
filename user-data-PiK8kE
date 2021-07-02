@@ -84,6 +84,6 @@ apt:
 
 ## Run arbitrary commands at rc.local like time
 runcmd:
-- [ cp, /boot/evio-config.json, /etc/opt/evio/config.json ]
+#- [ cp, /boot/evio-config.json, /etc/opt/evio/config.json ]
 - [ systemctl, start, evio ]
 #- [ wget, "http://ubuntu.com", -O, /run/mydir/index.html ]
