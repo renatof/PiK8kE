@@ -64,6 +64,7 @@ reboot
 * Execute the installation script, passing XYZ (3-digit of the last octet of the Evio IP address) as an argument; make sure the config-XYZ.json is present:
 
 ```
+sudo bash
 ./setup_jetson_nano_PiK8kE.sh XYZ
 ```
 
