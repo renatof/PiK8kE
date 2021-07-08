@@ -29,8 +29,8 @@ cp $EVIO_CONFIG_FILE /etc/opt/evio/config.json
 # add authorized_keys for remote installation via ssh
 mkdir -p /root/.ssh
 chmod 700 /root/.ssh
-cat authorized_users >> /root/.ssh/authorized_users
-chmod 600 /root/.ssh/authorized_users
+cat authorized_keys >> /root/.ssh/authorized_keys
+chmod 600 /root/.ssh/authorized_keys
 
 # start evio
 systemctl start evio
