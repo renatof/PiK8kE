@@ -14,6 +14,7 @@ To join the testbed, you'll need:
 
 * One or more edge devices. Currently, we support Raspberry Pi 4 and nVidia Jetson Nano devices, with at least 2GB memory, 4 cores, and 64GB SD card storage
 * An Ethernet (wired or wireless) network to connect the Pis to. The recommended setup is to deploy on a private network, with DHCP assigned addresses
+* The Pi needs to be connected to the Internet when you first boot it in order for it to self-configure into the virtual network
 * PiK8kE configuration files for [EdgeVPN.io](https://edgevpn.io) handed out by the PRAGMA PiK8kE team (Renato or Ken)
 * Ubuntu 20.04 server Raspberry Pi base image, or Ubuntu 18.04 Jetson Nano base image
 * A Linux computer with a micro SD card reader, and software to flash the SD card
@@ -36,7 +37,7 @@ The Raspberry Pi setup is the simplest one: essentially, create custom images fo
 ./patch_pi_image_PiK8kE.sh XYZ
 ```
 
-Then, you're ready to flash the SD card with PiK8kE-XYZ.img, plug it into your Pi, and boot it up. The cloud-init boot process will automatically install and configure the EdgeVPN.io virtual network. Please contact the PRAGMA PiK8kE team (Renato or Ken) to give a heads-up that your device is up and running.
+Then, you're ready to flash the SD card with PiK8kE-XYZ.img, plug it into your Pi, and boot it up. *Note: make sure the Pi is connected to the Internet when you first boot it - the cloud-init boot process needs Internet connectivity to automatically install and configure the EdgeVPN.io virtual network*. Please contact the PRAGMA PiK8kE team (Renato or Ken) to give a heads-up that your device is up and running, so we can add it to the Kubernetes cluster.
 
 # nVidia Jetson Nano setup
 
