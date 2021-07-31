@@ -53,8 +53,13 @@ The Jetson nano setup is more involved, and requires more manual steps for each 
 
 ## Customizing a Jetson nano device
 
+### Initial boot from nVidia's stock image
+
 * Flash an SD card for your device using the default nVidia Ubuntu 18.04 image that you can download from their developer's site
 * Boot up the Jetson Nano with the default nVidia SD card, and go through the interactive process of configuring your device with timezone, user name, etc. For consistency with the rest of the network, create a user account called ubuntu
+
+### Install custom kernel with PiK8kE dependences for OVS/Evio and K8s
+
 * Once the GUI interface is available, open a terminal and download the custom PiK8kE kernel tarball jetson-custom-kernel-PiK8kE.tgz into the root folder of your device. Please contact the PRAGMA team for a download link
 * Install the custom kernel and reboot:
 
@@ -66,7 +71,51 @@ tar -xf jetson-custom-kernel-PiK8kE.tgz
 reboot
 ```
 
-* After rebooting, you're ready to install the rest of the software
+* After rebooting, you're ready to install an up-to-date version of iset - a dependency from K8s - then the rest of the software
+
+### Build ipset v7.5
+
+* Make sure you have rebooted with the new kernel from the previous step
+* First, build and install libmnl
+
+```
+git clone git://git.netfilter.org/libmnl.git
+cd libmnl
+./autogen.sh
+./configure
+make
+sudo make install
+```
+
+* Now, build and install ipset
+
+```
+git://git.netfilter.org/ipset.git
+cd ipset
+./autogen.sh
+./configure
+make
+make modules
+sudo make install
+sudo make modules_install
+```
+
+* Place new ipset under /sbin
+
+```
+sudo mv /sbin/ipset /sbin/ipset-v6
+sudo cp /usr/local/sbin/ipset /sbin
+```
+
+* Double-check you are running the new ipset:
+
+```
+sudo ipset -v
+ipset v7.14, protocol version: 7
+```
+
+### Install and run Evio
+
 * Download the PiK8kE installation script: git clone https://github.com/renatof/PiK8kE
 * Download the Evio configuration file for your node, config-XYZ.json, that you obtained for your device(s) from the PRAGMA team
 * (Optional) edit the config-XYZ.json files and enter your site's geographical coordinates (lat/lon separated by comma) in the JSON "GeoCoordinate" key. This is not required but helps us keep track of where nodes are running on a map
