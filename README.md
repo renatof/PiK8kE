@@ -1,10 +1,10 @@
 # PiK8kE
 
-Tools to prepare images to flash Raspberry Pi 4 SD cards to join the PRAGMA PiK8kE testbed
+Tools to prepare images to flash Raspberry Pi 4 SD cards and customize Jetson nano devices to join the PRAGMA PiK8kE testbed
 
 # Introduction
 
-PiK8kE is an evolving international testbed for federated edge computing on Raspberry Pi 4 devices using Kubernetes (with other architectures such as Jetson planned for future expansion). The tools in this repository are used to create custom images to join the testbed.
+PiK8kE is an evolving international testbed for federated edge computing on Raspberry Pi 4 and Jetson nano devices using Kubernetes (with other architectures such as Jetson planned for future expansion). The tools in this repository are used to create custom images to join the testbed.
 
 Currently, the testbed is restricted to members of [PRAGMA](http://www.pragma-grid.net). [You can check our overlay visualizer](http://viz.edgevpn.io:5802/#/) to see the current state of the network.
 
@@ -20,6 +20,8 @@ To join the testbed, you'll need:
 * PiK8kE configuration files for [EdgeVPN.io](https://edgevpn.io) handed out by the PRAGMA PiK8kE team (Renato or Ken)
 * Ubuntu 20.04 server Raspberry Pi base image, or Ubuntu 18.04 Jetson Nano base image
 * A Linux computer with a micro SD card reader, and software to flash the SD card
+
+*Note: the testbed runs Docker and Kubernetes, and software is installed and managed by a front-end node via ansible. The front-end node needs public ssh keys configured to allow the testbed system managers to remotely ssh and escalate to root privileges in order to install and run Docker+Kubernetes. Please make sure you are comfortable with this prior to agreeing to join. Please contact the PiK8kE team if you have any questions*
 
 # Raspberry Pi 4 setup
 
