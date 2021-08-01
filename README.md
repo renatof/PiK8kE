@@ -32,7 +32,10 @@ The Raspberry Pi setup is the simplest one: essentially, create custom images fo
 * Create a folder PiK8kE on your Linux computer and clone this repository with git clone https://github.com/renatof/PiK8kE.git
 * [Download the 64-bit Ubuntu 20.04.2 LTS image](https://ubuntu.com/download/raspberry-pi) to your Linux computer
 * Copy the config-XYZ.json EdgeVPN.io configuration files for your IP address allocation. Here, XYZ describes the last octet of the virtual IP address (with leading zeroes if necessary). The first three bytes are 10.10.100. For example, config-004.json is the configuration for node 10.10.100.4
-* Edit the cloud-init file user-data-PiK8kE to: 1) change the password for the ubuntu user from PiK8kE to a secure password, 2) add any ssh authorized keys you'd like to include to authenticate to the ubuntu user. Please don't delete the existing ssh authorized_key - that is required for remote installation and management of Kubernetes.
+* Edit the cloud-init file user-data-PiK8kE to customize for your site:
+** You must change the password for the ubuntu user from the default PiK8kE to a _secure password_ that you can use to log in to your device
+** You need to add any ssh authorized keys you'd like to include to authenticate to the ubuntu user
+** Please don't delete the existing ssh authorized_key - that is required for remote installation and management of Kubernetes via ansible
 * (Optional) edit the cloud-init file network-config-PiK8kE if you need for your local site. By default, it is configured to use DHCP on eth0 (wired Ethernet) - if that is avaialble on your site, there's nothing you need to change.
 * (Optional) edit the config-XYZ.json files and enter your site's geographical coordinates (lat/lon separated by comma) in the JSON "GeoCoordinate" key. This is not required but helps us keep track of where nodes are running on a map
 * Run the patch script to create a custom image PiK8kE-XYZ.img for IP address 10.10.100.XYZ
