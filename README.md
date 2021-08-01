@@ -34,8 +34,8 @@ The Raspberry Pi setup is the simplest one: essentially, create custom images fo
 * Copy the config-XYZ.json EdgeVPN.io configuration files for your IP address allocation. Here, XYZ describes the last octet of the virtual IP address (with leading zeroes if necessary). The first three bytes are 10.10.100. For example, config-004.json is the configuration for node 10.10.100.4
 * Edit the cloud-init file user-data-PiK8kE to customize for your site:
 
-1) _You must change the password for the ubuntu user from the default PiK8kE to a secure password_
-2) or, alternatively (and preferably) you may add a ssh authorize public key(s) and disable password login by setting ssh_pwauth: false in the cloud-init file
+1) You may add ssh authorized public key(s) to allow remote login via ssh
+2) By default, password login via ssh is disabled in user-data-PiK8kE. If you want to enable password ssh auth, _you must change the password for the ubuntu user from the default PiK8kE to a secure password and set ssh_pwauth: true_
 3) Please don't delete the existing ssh authorized_key - that is required for remote installation and management of Kubernetes via ansible
 
 * (Optional) edit the cloud-init file network-config-PiK8kE if you need for your local site. By default, it is configured to use DHCP on eth0 (wired Ethernet) - if that is avaialble on your site, there's nothing you need to change.
