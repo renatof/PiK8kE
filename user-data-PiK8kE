@@ -18,7 +18,7 @@ chpasswd:
   - ubuntu:PiK8kE
 
 # Enable password authentication with the SSH daemon
-ssh_pwauth: true
+ssh_pwauth: false
 
 # add each entry to ~/.ssh/authorized_keys for the configured user or the
 # first user defined in the user definition directive.
