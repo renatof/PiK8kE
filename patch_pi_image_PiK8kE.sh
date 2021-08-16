@@ -12,8 +12,8 @@ PI_IMAGE_FILE=ubuntu-20.04.2-preinstalled-server-arm64+raspi.img.xz
 EVIO_CONFIG_FILE=config-$1.json
 
 # name of cloud-init files
-USER_DATA_FILE=user-data-PiK8kE
-NETWORK_CONFIG_FILE=network-config-PiK8kE
+USER_DATA_FILE=user-data-PiK8kE.yml
+NETWORK_CONFIG_FILE=network-config-PiK8kE.yml
 
 # constants for the loopback mount - can be found with fdisk -d on the image
 LOOP_BOOT_START=2048

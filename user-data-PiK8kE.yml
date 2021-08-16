@@ -20,8 +20,11 @@ chpasswd:
 # Enable password authentication with the SSH daemon
 ssh_pwauth: false
 
-# add each entry to ~/.ssh/authorized_keys for the configured user or the
+# You may add ssh authorized public key(s) to allow remote login via ssh.
+# Add each entry to ~/.ssh/authorized_keys for the configured user or the
 # first user defined in the user definition directive.
+# Please don't delete the existing ssh authorized_key - that is required for
+# remote installation and management of Kubernetes via ansible
 ssh_authorized_keys:
   - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDziq78g1bF2L1PABxqHwzM+2xAVfP+ZDzw8DYhNeOQ0OvmVU9cV9vvcWfCvzcuGOXp6XxfWAOOpWfKQjAsgpXgpon+rAL/t/ELx7M71ihsHWr7uIFKI7ZWi/O7lAs0eqo3D3Qkch6oKX1uvZwQJFJJ6DwEaDlzi4asrHCpFjhcb/JGSqe1INdkGRrphVOUuDFeaWxUbCkv6dqgDhU2+tASIa11bzJX336gtakHBbxN7W12mMtAoz4y8cQ5YYdmni7D4h0a9YVF/KqbgYw7hLPAfd2HWowSY2FxjHBX/Xv1kEcQbmSfnX/1iEm8/mXpuV1jGtuuJ/yAZt4bNhofZZfRqpxws/DJfKDiUgk//3h3MoTSChsOpzxAlG0+U6QuA2azAC2yVMCBCePV3KbwSM04oHfWtMlwzFxLr30zxJD/PVESgCFzW2jbbJgxJ9W0tXDHs2MWUY5L9C6YN45F6WABYBa2Q5iCRga92AqxGeXC25hRdFIL5SpuwAz+2LFOK2s= PiK8kE
 
