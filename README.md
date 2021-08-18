@@ -32,13 +32,13 @@ The Raspberry Pi setup is the simplest one: essentially, create custom images fo
 * Create a folder PiK8kE on your Linux computer and clone this repository with git clone https://github.com/renatof/PiK8kE.git
 * [Download the 64-bit Ubuntu 20.04.2 LTS image](https://ubuntu.com/download/raspberry-pi) to your Linux computer
 * Copy the config-XYZ.json EdgeVPN.io configuration files for your IP address allocation. Here, XYZ describes the last octet of the virtual IP address (with leading zeroes if necessary). The first three bytes are 10.10.100. For example, config-004.json is the configuration for node 10.10.100.4
-* Edit the cloud-init file user-data-PiK8kE to customize for your site:
+* Edit the file user-data-PiK8kE.yml to customize for your site; this file is used by Ubuntu's [cloud-init](https://cloud-init.io/) to confiture your device on first boot:
 
-1) You may add ssh authorized public key(s) to allow remote login via ssh. _You must add your ssh public key(s) in the user-data-PiK8kE file, not in the authorized_keys file in this repository_
-2) By default, password login via ssh is disabled in user-data-PiK8kE. If you want to enable password ssh auth, _you must change the password for the ubuntu user from the default PiK8kE to a secure password and set ssh_pwauth: true_
+1) You may add ssh authorized public key(s) to allow remote login via ssh. _You must add your ssh public key(s) in user-data-PiK8kE.yml, not in the authorized_keys file in this repository_
+2) By default, password login via ssh is disabled in user-data-PiK8kE.yml If you want to enable password ssh auth, _you must change the password for the ubuntu user from the default PiK8kE to a secure password and set ssh_pwauth: true_
 3) Please don't delete the existing ssh authorized_key - that is required for remote installation and management of Kubernetes via ansible
 
-* (Optional) edit the cloud-init file network-config-PiK8kE if you need for your local site. By default, it is configured to use DHCP on eth0 (wired Ethernet) - if that is avaialble on your site, there's nothing you need to change.
+* (Optional) edit the network-config-PiK8kE.yml file if you need a custom network configuration for your local site. This file is also used by cloud-init at boot time to configure your network. By default, it is configured to use DHCP on eth0 (wired Ethernet) - if that is avaialble on your site, there's nothing you need to change.
 * (Optional) edit the config-XYZ.json files and enter your site's geographical coordinates (lat/lon separated by comma) in the JSON "GeoCoordinate" key. This is not required but helps us keep track of where nodes are running on a map
 * Run the patch script to create a custom image PiK8kE-XYZ.img for IP address 10.10.100.XYZ
 
@@ -130,6 +130,7 @@ ipset v7.14, protocol version: 7
 
 ```
 sudo bash
+cd jetson
 ./setup_jetson_nano_PiK8kE.sh XYZ
 ```
 
