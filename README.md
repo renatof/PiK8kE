@@ -130,7 +130,7 @@ ipset v7.14, protocol version: 7
 
 ```
 sudo bash
-cd jetson
+cd jetson-nano
 ./setup_jetson_nano_PiK8kE.sh XYZ
 ```
 
