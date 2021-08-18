@@ -2,7 +2,7 @@
 
 # This script will only work correctly with the custom Jetson nano image prepared for the PiK8kE testbed
 
-# Run this *as root* inside your Jetson nano after it boots up for the first time
+# Run this *as root* inside your Jetson Nano after it boots up for the first time
 
 if [[ $# -eq 0 ]] ; then
     echo 'Usage: $1 XYZ, where XYZ is the last octet of the PiK8kE virtual IP address (include leading zeroes)'
@@ -10,7 +10,7 @@ if [[ $# -eq 0 ]] ; then
 fi
 
 # name of evio config file
-EVIO_CONFIG_FILE=config-$1.json
+EVIO_CONFIG_FILE=../config-$1.json
 
 if [ ! -f "$EVIO_CONFIG_FILE" ]; then
     echo "$EVIO_CONFIG_FILE does not exist."

@@ -1,10 +1,10 @@
 # PiK8kE
 
-Tools to prepare images to flash Raspberry Pi 4 SD cards and customize Jetson nano devices to join the PRAGMA PiK8kE testbed
+Tools to prepare images to flash Raspberry Pi 4 SD cards and customize Jetson Nano devices to join the PRAGMA PiK8kE testbed
 
 # Introduction
 
-PiK8kE is an evolving international testbed for federated edge computing on Raspberry Pi 4 and Jetson nano devices using Kubernetes (with other architectures such as Jetson planned for future expansion). The tools in this repository are used to create custom images to join the testbed.
+PiK8kE is an evolving international testbed for federated edge computing on Raspberry Pi 4 and Jetson Nano devices using Kubernetes (with other architectures such as Jetson planned for future expansion). The tools in this repository are used to create custom images to join the testbed.
 
 Currently, the testbed is restricted to members of [PRAGMA](http://www.pragma-grid.net). [You can check our overlay visualizer](http://viz.edgevpn.io:5802/#/) to see the current state of the network.
 
@@ -56,9 +56,9 @@ Once your node is connected to the Kubernetes cluster, we will work with you to 
 
 # nVidia Jetson Nano setup
 
-The Jetson nano setup is more involved, and requires more manual steps for each device added to the network - we currently do not have a similar mechanism to the Pi 4 where you would create/flash a custom SD card on a Linux machine.
+The Jetson Nano setup is more involved, and requires more manual steps for each device added to the network - we currently do not have a similar mechanism to the Pi 4 where you would create/flash a custom SD card on a Linux machine.
 
-## Customizing a Jetson nano device
+## Customizing a Jetson Nano device
 
 ### Initial boot from nVidia's stock image
 
