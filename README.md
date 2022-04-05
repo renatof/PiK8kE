@@ -27,16 +27,17 @@ To join the testbed, you'll need:
 
 The Raspberry Pi setup is the simplest one: essentially, create custom images for each device following the instructions below, then plugging in to each Pi, and turning them on
 
-## Creating a custom Raspberry Pi 4 image
+## Creating a custom Raspberry Pi 4 image in Linux
 
-* Create a folder PiK8kE on your Linux computer and clone this repository with git clone https://github.com/renatof/PiK8kE.git
+* Clone this repository with git clone https://github.com/renatof/PiK8kE.git
+* Change into the PiK8kE directory
 * [Download the 64-bit Ubuntu 20.04.2 LTS image](https://ubuntu.com/download/raspberry-pi) to your Linux computer
-* Copy the config-XYZ.json EdgeVPN.io configuration files for your IP address allocation. Here, XYZ describes the last octet of the virtual IP address (with leading zeroes if necessary). The first three bytes are 10.10.100. For example, config-004.json is the configuration for node 10.10.100.4
-* Edit the file user-data-PiK8kE.yml to customize for your site; this file is used by Ubuntu's [cloud-init](https://cloud-init.io/) to confiture your device on first boot:
+* Copy the config-XYZ.json configuration files provided to you by the EdgeVPN team for your IP address allocation. Here, XYZ describes the last octet of the virtual IP address (with leading zeroes if necessary). The first three bytes are 10.10.100. For example, config-004.json is the configuration for node 10.10.100.4
+* (Optional) Edit the file user-data-PiK8kE.yml to customize for your site if you wish to provide additional forms of login for you; this file is used by Ubuntu's [cloud-init](https://cloud-init.io/) to confiture your device on first boot:
 
-1) You may add ssh authorized public key(s) to allow remote login via ssh. _You must add your ssh public key(s) in user-data-PiK8kE.yml, not in the authorized_keys file in this repository_
-2) By default, password login via ssh is disabled in user-data-PiK8kE.yml If you want to enable password ssh auth, _you must change the password for the ubuntu user from the default PiK8kE to a secure password and set ssh_pwauth: true_
-3) Please don't delete the existing ssh authorized_key - that is required for remote installation and management of Kubernetes via ansible
+1) If you wish to add ssh authorized public key(s) to allow remote login via ssh, add them below the default ssh_authorized_keys: entry in the user-data-PiK8kE.yml file. Note: _do not edit/delete the exiting authorized_keys entry - that key is required for remote installation and management of Kubernetes via ansible_
+2) By default, password login via ssh is disabled in user-data-PiK8kE.yml - if you want to enable password ssh auth, _you must change the password for the ubuntu user from the default PiK8kE to a secure password and set ssh_pwauth: true_
+
 
 * (Optional) edit the network-config-PiK8kE.yml file if you need a custom network configuration for your local site. This file is also used by cloud-init at boot time to configure your network. By default, it is configured to use DHCP on eth0 (wired Ethernet) - if that is avaialble on your site, there's nothing you need to change.
 * (Optional) edit the config-XYZ.json files and enter your site's geographical coordinates (lat/lon separated by comma) in the JSON "GeoCoordinate" key. This is not required but helps us keep track of where nodes are running on a map
